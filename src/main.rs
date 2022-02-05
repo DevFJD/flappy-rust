@@ -79,6 +79,7 @@ impl Obstacle {
         let does_match = player.x == self.x;
         let player_above_gap = player.y < self.gap_y - half_size;
         let player_berlow_gap = player.y > self.gap_y + half_size;
+
         does_match && (player_above_gap || player_berlow_gap)
     }
 }
@@ -106,6 +107,7 @@ impl State {
         ctx.cls_bg(NAVY);
         ctx.print(0, 0, "Press space to flap");
         ctx.print(0, 1, &format!("Score: {}", self.score));
+
         self.frame_time += ctx.frame_time_ms;
 
         if self.frame_time > FRAME_DURATION {
@@ -144,6 +146,7 @@ impl State {
         ctx.print_centered(5, "Welcome to Flappy Rust");
         ctx.print_centered(8, "(P) Play Game");
         ctx.print_centered(9, "(Q) Quit");
+
         if let Some(key) = ctx.key {
             match key {
                 VirtualKeyCode::P => self.restart(),
@@ -159,6 +162,7 @@ impl State {
         ctx.print(0, 1, &format!("You earned {} points", self.score));
         ctx.print_centered(8, "(P) Play Game");
         ctx.print_centered(9, "(Q) Quit");
+
         if let Some(key) = ctx.key {
             match key {
                 VirtualKeyCode::P => self.restart(),
